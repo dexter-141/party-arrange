@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap'); 
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: "Montserrat", system-ui;
+
+}
+:root{
+   
+    --primary-color: #93c5fd;
+    --light-color:white;
+    
+
+}
+.login-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: var(--primary-color);
+}
+.login-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    padding: 20px;
+    height: 50vh;
+
+    background-color: var(--light-color);
+    border-radius: 10px;
+    box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+}
+.login-form form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+  
+    width: 60%;
+}
+.form-control{
+    background-color:#f3f3f1;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+   
+}
+label{
+    font-weight: 600;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    font-size: 15px;
+}
+.btn{
+    margin: 15px 0px;
+    padding: 10px 15px;
+    background-color: var(--primary-color);
+    color: var(--light-color);
+    font-weight: 600;
+    border: none;
+    border-radius: 0 10px;
+
+
+}
+.form-control:focus{
+    
+    outline: 2px solid  var(--primary-color)
+
+    
+
+}
