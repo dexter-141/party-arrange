@@ -5,6 +5,7 @@
 $conn;
 function connect()
 {
+    global $conn;
     $servername = "localhost";
     $username = "root";
     $password = "";
@@ -22,7 +23,12 @@ function iud($q)
 {
     connect();
     global $conn;
-    $conn->query($q);
+    ;
+    if($conn->query($q)===true){
+        return True;
+    }else{
+        return False;
+    }
 
 }
 
@@ -30,7 +36,13 @@ function search($q){
    connect();
    global $conn;
    $result = $conn->query($q);
-   return $result;
+   
+
+   if ($result) {
+       return $result;  // Return the result set
+   } else {
+       return null;     // Return null if the query fails
+   }
 
 }
 

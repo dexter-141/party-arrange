@@ -3,40 +3,28 @@ session_start();
 
 require 'db_connect.php';
 
-// iud("INSERT INTO users(username,password,email,phone_number) VALUES ('pasidu','123','pasidu@gmail.com','0714710856')");
+
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    iud("SELECT * FROM users WHERE username=$username");
+    $result = search("SELECT * FROM users WHERE username = '".$username."' AND password = '".$password."'");
 
-    if ($stmt = $mysqli->prepare($sql)) {
-        $stmt->bind_param("s", $username);
-        $stmt->execute();
-        $result = $stmt->get_result();
+    if ($result && $result->num_rows === 1) {
+        $user = $result->fetch_assoc();
+        
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['username'] = $user['username'];
 
-        if ($result->num_rows === 1) {
-            $user = $result->fetch_assoc();
-
-            if (password_verify($password, $user['password'])) {
-                $_SESSION['user_id'] = $user['id'];
-                $_SESSION['username'] = $user['username'];
-                header("location: index.php");
-                exit();
-            } else {
-                $error = "Invalid password or username.";
-            }
-        } else {
-            $error = "Invalid password or username.";
-        }
+        header("Location: index.php");
+        
     } else {
-        $error = "Database error";
-
+        $error = "Invalid username or password.";
     }
-    $stmt->close();
-    $mysqli->close();
+
+
 }
 
 
